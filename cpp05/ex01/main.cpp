@@ -11,94 +11,67 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-int main()
-{
+int main() {
 	std::cout << "=========================================" << std::endl;
-	std::cout << "       TESTES DO BUREAUCRAT              " << std::endl;
-	std::cout << "=========================================\n" << std::endl;
-
-	std::cout << "--- 1. Teste de Instanciação Válida e Operador '<<' ---" << std::endl;
-	try
-	{
-		Bureaucrat hermes("Hermes", 42);
-		std::cout << "Criado com sucesso: " << hermes << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "Erro inesperado: " << e.what() << std::endl;
-	}
-
-	std::cout << "\n--- 2. Teste: Instanciação com Grade Muito Alta (0) ---" << std::endl;
-	try
-	{
-		Bureaucrat god("Deus da Burocracia", 0);
-		std::cout << god << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "Exceção capturada com sucesso: " << e.what() << std::endl;
-	}
-
-	std::cout << "\n--- 3. Teste: Instanciação com Grade Muito Baixa (151) ---" << std::endl;
-	try
-	{
-		Bureaucrat zoidberg("Zoidberg", 151);
-		std::cout << zoidberg << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "Exceção capturada com sucesso: " << e.what() << std::endl;
-	}
-
-	std::cout << "\n--- 4. Teste: Incremento e Decremento Válidos ---" << std::endl;
-	try
-	{
-		Bureaucrat fry("Fry", 100);
-		std::cout << "Inicial: " << fry << std::endl;
-		
-		fry.incrementGrade();
-		std::cout << "Após incremento (deve ser 99): " << fry << std::endl;
-		
-		fry.decrementGrade();
-		std::cout << "Após decremento (deve voltar para 100): " << fry << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "Erro inesperado: " << e.what() << std::endl;
-	}
-
-	std::cout << "\n--- 5. Teste: Incremento Inválido (Ultrapassar Grade 1) ---" << std::endl;
-	try
-	{
-		Bureaucrat boss("Chefe", 1);
-		std::cout << boss << std::endl;
-		std::cout << "Tentando promover o Chefe..." << std::endl;
-		boss.incrementGrade();
-		std::cout << boss << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "Exceção capturada com sucesso: " << e.what() << std::endl;
-	}
-
-	std::cout << "\n--- 6. Teste: Decremento Inválido (Ultrapassar Grade 150) ---" << std::endl;
-	try
-	{
-		Bureaucrat intern("Estagiário", 150);
-		std::cout << intern << std::endl;
-		std::cout << "Tentando rebaixar o Estagiário..." << std::endl;
-		intern.decrementGrade();
-		std::cout << intern << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "Exceção capturada com sucesso: " << e.what() << std::endl;
+	std::cout << "1. TESTANDO CRIAÇÃO E OPERADOR DE OUTPUT" << std::endl;
+	std::cout << "=========================================" << std::endl;
+	
+	try {
+		Form formA("Formulario A", 100, 50);
+		std::cout << formA << std::endl;
+	} catch (std::exception &e) {
+		std::cout << "Exceção capturada: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n=========================================" << std::endl;
-	std::cout << "             FIM DOS TESTES              " << std::endl;
+	std::cout << "2. TESTANDO EXCEÇÕES NA INSTANCIAÇÃO" << std::endl;
 	std::cout << "=========================================" << std::endl;
+	
+	try {
+		std::cout << "Tentando criar Form com nota para assinar = 0..." << std::endl;
+		Form formHigh("Super Secreto", 0, 50);
+	} catch (std::exception &e) {
+		std::cout << "Exceção capturada: " << e.what() << std::endl;
+	}
+
+	try {
+		std::cout << "Tentando criar Form com nota para executar = 151..." << std::endl;
+		Form formLow("Super Inutil", 50, 151);
+	} catch (std::exception &e) {
+		std::cout << "Exceção capturada: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n=========================================" << std::endl;
+	std::cout << "3. TESTANDO ASSINATURAS (SIGNFORM & BESIGNED)" << std::endl;
+	std::cout << "=========================================" << std::endl;
+
+	try {
+		Bureaucrat estagiario("Estagiario", 150);
+		Bureaucrat diretor("Diretor", 1);
+		Form contrato("Contrato de Risco", 50, 50);
+
+		std::cout << "Estado inicial do formulário:" << std::endl;
+		std::cout << contrato << std::endl;
+
+		// Estagiário tenta assinar (Nota 150 tentado assinar form de nota 50 - Deve falhar)
+		std::cout << "\n" << estagiario.getName() << " tentando assinar..." << std::endl;
+		estagiario.signForm(contrato);
+		std::cout << contrato << std::endl; // Status deve continuar "não assinado"
+
+		// Diretor tenta assinar (Nota 1 tentando assinar form de nota 50 - Deve passar)
+		std::cout << "\n" << diretor.getName() << " tentando assinar..." << std::endl;
+		diretor.signForm(contrato);
+		std::cout << contrato << std::endl; // Status deve mudar para "assinado"
+
+		// Opcional: Diretor tenta assinar de novo (se o seu código tratar isso)
+		std::cout << "\n" << diretor.getName() << " tentando assinar novamente..." << std::endl;
+		diretor.signForm(contrato);
+
+	} catch (std::exception &e) {
+		std::cout << "Exceção inesperada capturada no fluxo principal: " << e.what() << std::endl;
+	}
 
 	return 0;
 }
