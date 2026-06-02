@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:10:15 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/06/02 18:00:52 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/06/02 19:21:05 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void ShrubberyCreationForm::executeAction() const
 	"⣤⣀⣠⣄⣀⣀⡀⠉⡛⠀⠒⠀⠙⠳⠐⠓⠀⠀⣀⠀⢀⠀⢀⡀⠀⠀⠄⠀⡀⠀⢀⠈⣉⢉⠉⠉⠙⠛⠛⠛⠛⠛⠛⠻⠿⠿⠿⠿⠿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n"
 	"⢀⢀⠠⠭⠀⠀⣀⣀⠀⠀⢠⢝⠒⡒⠂⠲⠞⠙⠊⢄⣤⠡⡤⠤⠤⠀⠀⣀⡅⠍⡁⠀⠐⠤⠤⠀⠉⠁⠀⠄⠤⠄⠛⠀⢉⣥⡺⠖⠶⣶⣦⣤⡤⢤⡄⢀⠉⠉⠉⠛⠛⠛⠛⠛⠛\n";
 	arvore.close();
-	std::cout << "Execute action schurubis\n";
 }
 
 const char *ShrubberyCreationForm::OpenFileException::what() const throw()
