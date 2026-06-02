@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 16:03:54 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/05/20 16:08:45 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/05/26 15:45:40 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,6 @@ int main() {
 		std::cout << "\n" << diretor.getName() << " tentando assinar..." << std::endl;
 		diretor.signForm(contrato);
 		std::cout << contrato << std::endl; // Status deve mudar para "assinado"
-
-		// Opcional: Diretor tenta assinar de novo (se o seu código tratar isso)
-		std::cout << "\n" << diretor.getName() << " tentando assinar novamente..." << std::endl;
-		diretor.signForm(contrato);
 
 	} catch (std::exception &e) {
 		std::cout << "Exceção inesperada capturada no fluxo principal: " << e.what() << std::endl;
