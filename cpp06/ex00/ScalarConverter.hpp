@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 20:20:11 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/06/02 20:32:03 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/06/02 21:25:13 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
+
+enum	Type
+{
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE
+};
 
 class	ScalarConverter
 {
