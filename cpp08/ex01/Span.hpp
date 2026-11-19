@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 16:08:33 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/08/12 18:19:02 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/11/19 16:40:41 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define RED "\033[31m"
 # define RESET "\033[0m"
 # define YELLOW "\033[33m"
+# include <iterator>
 # include <exception>
 # include <iostream>
 # include <vector>
@@ -36,9 +37,16 @@ public:
 	Span(const Span& other);
 	Span&		operator=(const Span& other);
 
-	void	addNumber(int num);
-	int		shortestSpan();
-	int		longestSpan();
+	void				addNumber(int num);
+	unsigned int		shortestSpan();
+	unsigned int		longestSpan();
+	template <typename Iterator>
+	void				addRange(Iterator begin, Iterator end)
+	{
+		if (std::distance(begin, end) + this->span.size() > this->size)
+			throw	ExceededNumberOfElements();
+		this->span.insert(this->span.end(), begin, end);
+	}
 
 	class	ExceededNumberOfElements : public std::exception
 	{

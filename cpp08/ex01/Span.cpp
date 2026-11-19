@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 16:08:06 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/08/12 18:27:02 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/11/19 16:40:59 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	Span::addNumber(int num)
 		span.push_back(num);
 }
 
-int	Span::shortestSpan()
+unsigned int	Span::shortestSpan()
 {
 	std::vector<int>	temp;
-	int					shortest_span = std::numeric_limits<int>::max();
-	int					current_span;
+	long				shortest_span = std::numeric_limits<unsigned int>::max();
+	long				current_span;
 
 	if (span.size() == 1)
 		throw OneElement();
@@ -64,39 +64,22 @@ int	Span::shortestSpan()
 		throw EmptySpan();
 	temp = this->span;
 	std::sort(temp.begin(), temp.end());
-	// std::cout << "\ntemp: " << temp[0] << "\n";
-	for (size_t i = 0; i < temp.size(); ++i)
+	for (size_t i = 1; i < temp.size(); i++)
 	{
-		current_span = temp[i] - temp[i - 1];
-		std::cout << "current_span: " << current_span << "\n";
-		if (current_span > shortest_span)
+		current_span = static_cast<unsigned int>(temp[i]) - static_cast<unsigned int>(temp[i - 1]);
+		if (current_span < shortest_span)
 			shortest_span = current_span;
 	}
-	return (shortest_span);
+	return (static_cast<unsigned int>(shortest_span));
 	
 }
 
-int	Span::longestSpan()
+unsigned int	Span::longestSpan()
 {
-	std::vector<int>	temp;
-	int					longest_span = 1;
-	int					current_span = 1;
-
 	if (span.size() == 1)
 		throw OneElement();
 	if (span.size() == 0)
 		throw EmptySpan();
-	temp = this->span;
-	for (size_t i = 0; i < temp.size(); ++i)
-	{
-		if (temp[i] == temp[i - 1])
-			current_span++;
-		else
-		{
-			longest_span = std::max(longest_span, current_span);
-			current_span = 1;
-		}
-	}
-	return (longest_span);
-	
+	std::sort(span.begin(), span.end());
+	return (static_cast<unsigned int>(span.back()) - static_cast<unsigned int>(span.front()));
 }
