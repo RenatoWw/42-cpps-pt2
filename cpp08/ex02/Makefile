@@ -1,6 +1,5 @@
-NAME = span
-SRCS = main.cpp \
-		Span.cpp
+NAME = stack
+SRCS = main.cpp
 
 OBJ_DIR = objs/
 OBJ = $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
